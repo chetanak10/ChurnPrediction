@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChurnShield — Student Retention Dashboard</title>
+  <meta name="description" content="Lightweight dashboard for predicting and reducing student churn in underserved communities." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg">
+  <header class="topbar">
+    <h1>ChurnShield</h1>
+    <span class="subtitle">for Underserved Schools</span>
+  </header>
+
+  <main class="container narrow">
+    <section class="card">
+      <h2>Teacher Login</h2>
+      <form id="loginForm" class="form-grid">
+        <label>Email
+          <input type="email" id="email" placeholder="teacher@school.org" required>
+        </label>
+        <label>Password
+          <input type="password" id="password" placeholder="••••••••" required>
+        </label>
+        <button type="submit" class="btn primary">Sign In</button>
+      </form>
+      <p class="muted small">Demo: use any email. Password: <code>demo123</code></p>
+    </section>
+
+    <section class="card">
+      <h3>Why ChurnShield?</h3>
+      <ul class="checklist">
+        <li>Early dropout prediction with limited data</li>
+        <li>Clear, teacher-friendly reasons</li>
+        <li>Curriculum next steps &amp; low-cost interventions</li>
+        <li>Works offline-first (saves to your browser)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="privacy.html">Privacy &amp; Data</a>
+    <span>•</span>
+    <a href="readme.html">How to deploy</a>
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const pw = document.getElementById('password').value;
+      if(pw !== 'demo123'){
+        alert('Invalid credentials. Use password: demo123');
+        return;
+      }
+      const teacher = window.DEMO_AUTH.bootstrapTeacher(email);
+      localStorage.setItem('cs_teacher', JSON.stringify(teacher));
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</html>

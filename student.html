@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChurnShield — Student Retention Dashboard</title>
+  <meta name="description" content="Lightweight dashboard for predicting and reducing student churn in underserved communities." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="AUTH.guard(); StudentPage.render();">
+  <header class="topbar">
+    <h1>ChurnShield</h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">My Profile</a>
+      <button class="btn small" onclick="AUTH.logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card" id="studentHeader"></section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h3>Risk & Reasons</h3>
+        <div id="reasons"></div>
+        <canvas id="activityChart" height="140"></canvas>
+      </div>
+      <div class="card">
+        <h3>Next Best Activity</h3>
+        <div id="nextActivity"></div>
+        <h3 style="margin-top:1rem;">Intervention</h3>
+        <div id="intervention"></div>
+        <div class="actions">
+          <button class="btn" onclick="StudentPage.sendIntervention('SMS')">Send SMS</button>
+          <button class="btn" onclick="StudentPage.sendIntervention('Reminder')">Send Reminder</button>
+          <button class="btn" onclick="StudentPage.sendIntervention('Mentor Call')">Assign Mentor Call</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Intervention History & Feedback</h3>
+      <div id="history"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="dashboard.html">← Back to dashboard</a>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChurnShield — Student Retention Dashboard</title>
+  <meta name="description" content="Lightweight dashboard for predicting and reducing student churn in underserved communities." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="AUTH.guard(); Profile.render();">
+  <header class="topbar">
+    <h1>ChurnShield</h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html" class="active">My Profile</a>
+      <button class="btn small" onclick="AUTH.logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container narrow">
+    <section class="card">
+      <h2>Teacher Profile</h2>
+      <form id="profileForm" class="form-grid">
+        <label>Full name
+          <input type="text" id="name" placeholder="e.g., Ms. A. Sharma" required>
+        </label>
+        <label>School
+          <input type="text" id="school" placeholder="e.g., Bright Future HS">
+        </label>
+        <label>Grades Managed
+          <input type="text" id="grades" placeholder="e.g., 6,7,8">
+        </label>
+        <label>Preferred Low‑cost Interventions
+          <input type="text" id="prefs" placeholder="SMS, Reminder">
+        </label>
+        <button type="submit" class="btn primary">Save</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>Usage Summary</h3>
+      <div id="usage"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="dashboard.html">← Back to dashboard</a>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</html>

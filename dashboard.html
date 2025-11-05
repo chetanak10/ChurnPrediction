@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChurnShield — Student Retention Dashboard</title>
+  <meta name="description" content="Lightweight dashboard for predicting and reducing student churn in underserved communities." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="AUTH.guard(); Dashboard.render();">
+  <header class="topbar">
+    <h1>ChurnShield</h1>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="profile.html">My Profile</a>
+      <button class="btn small" onclick="AUTH.logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="flex-between">
+        <h2>Class Overview</h2>
+        <div class="filters">
+          <input type="search" id="search" placeholder="Search student or grade…" oninput="Dashboard.filter()"/>
+          <select id="riskFilter" onchange="Dashboard.filter()">
+            <option value="">All risks</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <select id="gradeFilter" onchange="Dashboard.filter()">
+            <option value="">All grades</option>
+            <option>Grade 6</option>
+            <option>Grade 7</option>
+            <option>Grade 8</option>
+          </select>
+        </div>
+      </div>
+      <canvas id="riskChart" height="120"></canvas>
+    </section>
+
+    <section class="card">
+      <h3>Students (Predicted Dropout Risk)</h3>
+      <div id="studentsGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted small">Tip: Click a student to view details, history, and override suggestions.</span>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</html>
